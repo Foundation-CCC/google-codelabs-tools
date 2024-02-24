@@ -21,7 +21,7 @@ import (
 	"testing"
 	"testing/quick"
 
-	_ "github.com/googlecodelabs/tools/claat/parser/gdoc" // Explicitly register gdoc parser
+	_ "github.com/Foundation-CCC/google-codelabs-tools/claat/parser/gdoc" // Explicitly register gdoc parser
 )
 
 type testTransport struct {

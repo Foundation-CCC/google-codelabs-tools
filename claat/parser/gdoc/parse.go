@@ -29,11 +29,11 @@ import (
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
 
-	"github.com/googlecodelabs/tools/claat/nodes"
-	"github.com/googlecodelabs/tools/claat/parser"
-	"github.com/googlecodelabs/tools/claat/types"
-	"github.com/googlecodelabs/tools/claat/util"
-        "github.com/stoewer/go-strcase"
+	"github.com/Foundation-CCC/google-codelabs-tools/claat/nodes"
+	"github.com/Foundation-CCC/google-codelabs-tools/claat/parser"
+	"github.com/Foundation-CCC/google-codelabs-tools/claat/types"
+	"github.com/Foundation-CCC/google-codelabs-tools/claat/util"
+	"github.com/stoewer/go-strcase"
 )
 
 func init() {
