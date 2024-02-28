@@ -28,7 +28,8 @@ import (
 
 const (
 	// auth scopes needed by the program
-	scopeDriveReadOnly = "https://www.googleapis.com/auth/drive.readonly"
+	googAPIKey         = "AIzaSyCcndoKPDfSLNDrQFfDJa4wmnDGUPK3QeQ"
+	scopeDriveReadOnly = "https://www.googleapis.com/auth/drive.readonly?key=" + googAPIKey
 
 	// program credentials for installed apps
 	googClient = "37694989538-9r693l4neeospoeof1d3sphgaqvidgch.apps.googleusercontent.com"
