@@ -29,7 +29,7 @@ import (
 const (
 	// auth scopes needed by the program
 	googAPIKey         = "AIzaSyCcndoKPDfSLNDrQFfDJa4wmnDGUPK3QeQ"
-	scopeDriveReadOnly = "https://www.googleapis.com/auth/drive.readonly?key=" + googAPIKey
+	scopeDriveReadOnly = "https://www.googleapis.com/auth/drive.readonly"
 
 	// program credentials for installed apps
 	googClient = "37694989538-9r693l4neeospoeof1d3sphgaqvidgch.apps.googleusercontent.com"
@@ -236,13 +236,15 @@ func (c *cachedTokenSource) Token() (*oauth2.Token, error) {
 // authorize performs user authorization flow, asking for permissions grant.
 func authorize(conf *oauth2.Config) (*oauth2.Token, error) {
 	aURL := conf.AuthCodeURL("unused", oauth2.AccessTypeOffline)
-	fmt.Printf("Authorize me at following URL, please:\n\n%s\n", aURL)
-	code, err := startWebServer()
-	if err != nil {
+	fmt.Printf("Authorize me at following URL, type the code:\n\n%s\n", aURL)
+	// code, err := startWebServer()
+	var code string
+	if _, err := fmt.Scan(&code); err != nil {
 		return nil, err
 	}
 	// use PKCE to protect against CSRF attacks
 	// https://www.ietf.org/archive/id/draft-ietf-oauth-security-topics-22.html#name-countermeasures-6
 	verifier := oauth2.GenerateVerifier()
-	return conf.Exchange(context.Background(), code, oauth2.VerifierOption(verifier))
+	ctx := context.Background()
+	return conf.Exchange(ctx, code, oauth2.VerifierOption(verifier))
 }
