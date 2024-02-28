@@ -4,7 +4,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//	http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,7 +16,6 @@ package auth
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net"
 	"net/http"
@@ -67,7 +66,7 @@ func startWebServer() (code string, err error) {
 		w.Header().Set("Content-Type", "text/plain")
 		fmt.Fprintf(w, "Received oauth code\r\nYou can now safely close this browser window.")
 	}))
-        code = <- codeCh
+	code = <-codeCh
 	return code, nil
 }
 
@@ -161,7 +160,7 @@ func readToken(provider string) (*oauth2.Token, error) {
 	if err != nil {
 		return nil, err
 	}
-	b, err := ioutil.ReadFile(l)
+	b, err := os.ReadFile(l)
 	if err != nil {
 		return nil, err
 	}
