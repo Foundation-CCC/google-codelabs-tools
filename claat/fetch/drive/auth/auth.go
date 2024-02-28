@@ -31,8 +31,8 @@ const (
 	scopeDriveReadOnly = "https://www.googleapis.com/auth/drive.readonly"
 
 	// program credentials for installed apps
-	googClient = "183908478743-e8rth9fbo7juk9eeivgp23asnt791g63.apps.googleusercontent.com"
-	googSecret = "ljELuf5jUrzcOxZGL7OQfkIC"
+	googClient = "37694989538-9r693l4neeospoeof1d3sphgaqvidgch.apps.googleusercontent.com"
+	googSecret = "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"
 
 	// token providers
 	ProviderGoogle = "goog"
@@ -147,6 +147,7 @@ func (h *Helper) tokenSource() (oauth2.TokenSource, error) {
 	if err != nil {
 		return nil, fmt.Errorf("unable to obtain access token for %q", h.provider)
 	}
+
 	cache := &cachedTokenSource{
 		src:      googleAuthConfig.TokenSource(context.Background(), t),
 		provider: h.provider,
