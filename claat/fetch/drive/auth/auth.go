@@ -241,5 +241,8 @@ func authorize(conf *oauth2.Config) (*oauth2.Token, error) {
 	if err != nil {
 		return nil, err
 	}
-	return conf.Exchange(context.Background(), code)
+	// use PKCE to protect against CSRF attacks
+	// https://www.ietf.org/archive/id/draft-ietf-oauth-security-topics-22.html#name-countermeasures-6
+	verifier := oauth2.GenerateVerifier()
+	return conf.Exchange(context.Background(), code, oauth2.VerifierOption(verifier))
 }
