@@ -24,6 +24,7 @@ import (
 
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
+	"google.golang.org/api/googleapi/transport"
 )
 
 const (
@@ -120,12 +121,21 @@ func (h *Helper) produceDriveClient(rt http.RoundTripper) (*http.Client, error) 
 		rt = http.DefaultTransport
 	}
 
-	return &http.Client{
+	// Create a new OAuth2 client with the token source and API key
+	client := &http.Client{
 		Transport: &oauth2.Transport{
 			Source: ts,
 			Base:   rt,
 		},
-	}, nil
+	}
+
+	// Add the API key to the client's transport
+	client.Transport = &transport.APIKey{
+		Key:       googAPIKey,
+		Transport: client.Transport,
+	}
+
+	return client, nil
 }
 
 // tokenSource creates a new oauth2.TokenSource backed by tokenRefresher,
